@@ -5,7 +5,7 @@ Every year, the Pandora Team runs part of the UK LArTPC Software and Analysis Wo
 
 This page will cover the basics which would allow you to make your own Pandora edits/algorithms for your own analysis as needed. 
 
-Generally, Pandora is run as part of the reco2 reconstruction stage, or consolidated reco ( reco1 + reco2). Thus, you will need an input at either the reco1 or detsim stage ready. Reco2 is the higher level reconstruction, like particle creation. 
+Generally, Pandora is run as part of the reco2 reconstruction stage, or consolidated reco ( reco1 + reco2). Thus, you will need an input at either the reco1 or detsim stage ready. Reco2 is the higher level reconstruction, which does things like particle creation. 
 
 Basic Config Edits
 ------------------
@@ -27,7 +27,7 @@ You can then make your own fcl file to change the Pandora steering to be whateve
     physics.producers.pandora.ShouldRunCosmicRecoOption: false
     physics.producers.pandora.ShouldRunNeutrinoRecoOption: true
 
-Running this then allows you to make basic configuration edits to Pandora:
+Running this then allows you to make basic configuration edits to Pandora within reco2:
 
 .. code-block::
 
@@ -44,7 +44,7 @@ By running the fhicl-dump above, you should have seen that Pandora is controlled
 
 Normally the Pandora xml settings live in various places, which you can git clone down to make your own copy. A copy of most of them can be found in `LArReco <https://github.com/PandoraPFAOrg/LArReco/tree/master>`_ / settings.
 
-In these you can edit which algorithms run and in what order. For example, if you wanted to see exactly which algorithms were running you could set ShouldDisplayAlgorithmInfo in the Global Settings to true.
+In these you can edit which algorithms run and in what order. For example, if you wanted to see exactly which algorithms were running you could set :code:`ShouldDisplayAlgorithmInfo` in the Global Settings to true.
 
 .. code-block::
 
@@ -56,7 +56,7 @@ In these you can edit which algorithms run and in what order. For example, if yo
 New Algorithms
 --------------
 
-You want to put these in `LArContent <https://github.com/PandoraPFAOrg/LArContent>_`.
+You want to put these in `LArContent <https://github.com/PandoraPFAOrg/LArContent>`_.
 
 In :code:`larpandoracontent/larpandoracontent`, you must choose where to put your algorithm. Beware: if you choose to make your own folder, make sure it is added to the :code:`LArContent.cc` file. 
 
@@ -240,4 +240,4 @@ Once you have created your new algorithm, you can then add it to your Pandora Se
         <OverwriteExistingId>true</OverwriteExistingId>
    </algorithm>
 
-With the algorithm name at the top and the settings switches you defined in the algorithm in the middle. Then build, and run with your custom fcl and xml and you should see your new alg!
+with the algorithm name at the top and the settings switches you defined in the algorithm in the middle. Then build, and run with your custom fcl and xml and you should see your new alg!
